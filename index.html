@@ -1,123 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Canteen Oracle 🔮</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
-<body>
+<body class="home-page">
 
-    <!-- Background particles -->
+    <!-- Floating particles -->
     <div class="particles"></div>
 
-    <main class="container">
-
-        <!-- =================================================
-             HERO
-        ================================================== -->
+    <main class="home-container">
 
         <section class="hero">
 
-            <div class="tiny-label">
-                ✦ THE ANCIENT CANTEEN ORACLE ✦
+            <div class="oracle-orb">
+                <div class="orb-inner">🔮</div>
+            </div>
+
+            <div class="eyebrow">
+                ✦ THE MOST UNNECESSARY FOOD TECHNOLOGY ✦
             </div>
 
             <h1>
-                What Should<br>
-                <span>You Eat?</span>
+                CANTEEN<br>
+                <span>ORACLE</span>
             </h1>
 
             <p class="subtitle">
-                Tell the Oracle your budget.<br>
-                Tell the Oracle your time.<br>
-                Prepare to be judged.
+                Tell the Oracle your budget and how much <b>lime</b> you have left.
+                <br>
+                It will tell you exactly what you should eat.
+                Probably.
             </p>
 
         </section>
 
 
-        <!-- =================================================
-             ORACLE
-        ================================================== -->
+        <section class="oracle-card">
 
-        <section class="oracle-section">
+            <div class="card-glow"></div>
 
-            <div class="oracle-glow"></div>
+            <div class="input-section">
 
-            <div class="oracle-orb">
+                <div class="input-box">
 
-                <div class="orb-symbol">
-                    🔮
-                </div>
+                    <label>💰 HOW MUCH MONEY?</label>
 
-            </div>
+                    <div class="input-wrapper">
+                        <span>₹</span>
 
-
-            <div class="speech-bubble">
-
-                <span id="oracleSpeech">
-                    Come closer, mortal...
-                </span>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             INPUT CARD
-        ================================================== -->
-
-        <section class="input-card">
-
-            <div class="input-group">
-
-                <label for="budget">
-                    💰 HOW MUCH MONEY DO YOU HAVE?
-                </label>
-
-                <div class="input-wrapper">
-
-                    <span>₹</span>
-
-                    <input
-                        type="number"
-                        id="budget"
-                        min="0"
-                        placeholder="e.g. 80"
-                    >
+                        <input
+                            type="number"
+                            id="budget"
+                            placeholder="20"
+                            min="0"
+                        >
+                    </div>
 
                 </div>
 
-            </div>
 
+                <div class="input-box">
 
-            <div class="input-group">
+                    <label>🍋 HOW MUCH LIME LEFT?</label>
 
-                <label for="time">
-                    ⏰ HOW MANY MINUTES DO YOU HAVE?
-                </label>
+                    <div class="input-wrapper">
+                        <span>⏱</span>
 
-                <div class="input-wrapper">
+                        <input
+                            type="number"
+                            id="time"
+                            placeholder="15"
+                            min="0"
+                        >
 
-                    <span>⌛</span>
-
-                    <input
-                        type="number"
-                        id="time"
-                        min="1"
-                        placeholder="e.g. 15"
-                    >
+                        <small>minutes</small>
+                    </div>
 
                 </div>
 
@@ -129,1038 +92,494 @@
                 onclick="consultOracle()"
             >
 
+                <span class="button-icon">🔮</span>
+
                 <span>ASK THE ORACLE</span>
 
-                <span class="button-sparkle">
-                    ✦
-                </span>
+                <span class="button-arrow">→</span>
 
             </button>
 
-        </section>
 
-
-        <!-- =================================================
-             EXAMPLES
-        ================================================== -->
-
-        <section class="examples">
-
-            <p>
-                OR CHOOSE YOUR DESTINY
-            </p>
-
-            <div class="example-buttons">
-
-                <button onclick="example(0, 15)">
-                    💀 I'm Broke
-                </button>
-
-                <button onclick="example(20, 10)">
-                    💸 ₹20 Gang
-                </button>
-
-                <button onclick="example(80, 15)">
-                    🥟 Samosa Money
-                </button>
-
-                <button onclick="example(500, 30)">
-                    👑 I'm Rich
-                </button>
-
-                <button onclick="example(50, 3)">
-                    🏃 I'm Screwed
-                </button>
-
+            <div class="tiny-warning">
+                ⚠️ WARNING: This Oracle has absolutely no qualifications.
             </div>
 
         </section>
 
 
+        <div class="examples">
+
+            <span>Try:</span>
+
+            <button onclick="example(20, 13)">
+                ₹20 + 13 min
+            </button>
+
+            <button onclick="example(50, 5)">
+                ₹50 + 5 min
+            </button>
+
+            <button onclick="example(500, 60)">
+                ₹500 + 60 min
+            </button>
+
+        </div>
+
+
         <footer>
-            ⚠️ The Oracle has a 0% refund policy.
+            Canteen Oracle © 2026
+            <br>
+            Powered by questionable mathematics™
         </footer>
 
     </main>
 
 
-<script>
+    <script>
 
-/* =========================================================
-   AUDIO ENGINE
-   ========================================================= */
+        /*
+        ==========================================
+        CREATE PARTICLES
+        ==========================================
+        */
 
-let audioContext = null;
-let masterGain = null;
-let musicTimer = null;
+        const particleContainer =
+            document.querySelector(".particles");
 
+        for (let i = 0; i < 45; i++) {
 
-/* Create audio */
+            const particle =
+                document.createElement("div");
 
-function initAudio() {
+            particle.className = "particle";
 
-    if (audioContext) return;
+            particle.style.left =
+                Math.random() * 100 + "%";
 
-    audioContext = new (
-        window.AudioContext ||
-        window.webkitAudioContext
-    )();
+            particle.style.animationDelay =
+                Math.random() * 8 + "s";
 
-    masterGain =
-        audioContext.createGain();
+            particle.style.animationDuration =
+                (5 + Math.random() * 8) + "s";
 
-    masterGain.gain.value = 0.12;
-
-    masterGain.connect(
-        audioContext.destination
-    );
-}
+            particleContainer.appendChild(particle);
+        }
 
 
-/* Unlock browser audio */
+        /*
+        ==========================================
+        EXAMPLE BUTTON
+        ==========================================
+        */
 
-async function unlockAudio() {
+        function example(budget, time) {
 
-    initAudio();
+            document.getElementById("budget").value =
+                budget;
 
-    if (
-        audioContext &&
-        audioContext.state === "suspended"
-    ) {
+            document.getElementById("time").value =
+                time;
 
-        try {
+            consultOracle();
+        }
 
-            await audioContext.resume();
 
-        } catch (error) {
+        /*
+        ==========================================
+        ORACLE
+        ==========================================
+        */
 
-            console.log(
-                "Browser blocked audio."
+        function consultOracle() {
+
+            const budgetInput =
+                document.getElementById("budget");
+
+            const timeInput =
+                document.getElementById("time");
+
+
+            const budget =
+                Number(budgetInput.value);
+
+            const time =
+                Number(timeInput.value);
+
+
+            if (
+                budgetInput.value === "" ||
+                timeInput.value === ""
+            ) {
+
+                shakeCard();
+
+                alert(
+                    "🔮 The Oracle requires BOTH money and lime."
+                );
+
+                return;
+            }
+
+
+            if (budget < 0 || time < 0) {
+
+                alert(
+                    "The Oracle has detected illegal mathematics. 🗿"
+                );
+
+                return;
+            }
+
+
+            let prediction;
+            let animation;
+            let title;
+            let emoji;
+
+
+            /*
+            ==========================================
+            LOW BUDGET
+            ==========================================
+            */
+
+            if (budget <= 20) {
+
+                const predictions = [
+
+                    {
+                        title: "THE LUXURY PROTOCOL",
+                        emoji: "🍛",
+                        animation: "biryani",
+
+                        text:
+                        "Go to the nearest luxury hotel. Order biryani. Eat EXACTLY 5 grams. Nod respectfully. Run away."
+                    },
+
+                    {
+                        title: "THE BISCUIT STRATEGY",
+                        emoji: "🍪",
+                        animation: "biscuit",
+
+                        text:
+                        "Buy one biscuit. Break it into 7 pieces. Eat one piece every 4 minutes. You have now invented fine dining."
+                    },
+
+                    {
+                        title: "THE MENU TECHNIQUE",
+                        emoji: "📜",
+                        animation: "menu",
+
+                        text:
+                        "Walk into the fanciest restaurant nearby. Ask for the menu. Look at the prices. Whisper 'beautiful' and leave."
+                    },
+
+                    {
+                        title: "THE CANteen PHILOSOPHER",
+                        emoji: "🧘",
+                        animation: "philosophy",
+
+                        text:
+                        "Go to the canteen. Stare at the biryani for 11 seconds. This counts as consuming it spiritually."
+                    }
+
+                ];
+
+
+                const choice =
+                    predictions[
+                        Math.floor(
+                            Math.random() *
+                            predictions.length
+                        )
+                    ];
+
+
+                title = choice.title;
+                emoji = choice.emoji;
+                animation = choice.animation;
+                prediction = choice.text;
+
+            }
+
+
+            /*
+            ==========================================
+            LOW TIME
+            ==========================================
+            */
+
+            else if (time <= 3) {
+
+                title = "EMERGENCY FOOD PROTOCOL";
+
+                emoji = "🏃";
+
+                animation = "running";
+
+                prediction =
+                    "YOU HAVE NO TIME. Run to the canteen. Point at the nearest edible object. Say 'YES'. Consume 43% of it and leave.";
+
+            }
+
+
+            /*
+            ==========================================
+            SMALL BUDGET
+            ==========================================
+            */
+
+            else if (budget <= 50) {
+
+                title = "THE SAMOSA ECONOMY";
+
+                emoji = "🥟";
+
+                animation = "samosa";
+
+                prediction =
+                    "Buy the cheapest samosa available. Spend the remaining money looking at pictures of food you cannot afford.";
+
+            }
+
+
+            /*
+            ==========================================
+            MEDIUM + LOW TIME
+            ==========================================
+            */
+
+            else if (
+                budget <= 300 &&
+                time <= 10
+            ) {
+
+                title = "THE BIRYANI SPEEDRUN";
+
+                emoji = "🍛";
+
+                animation = "biryani";
+
+                prediction =
+                    "Order biryani immediately. You have " +
+                    time +
+                    " minutes. Eat at approximately 4.7× normal human speed.";
+
+            }
+
+
+            /*
+            ==========================================
+            MEDIUM BUDGET
+            ==========================================
+            */
+
+            else if (budget <= 300) {
+
+                title = "THE QUESTIONABLE FEAST";
+
+                emoji = "🍛";
+
+                animation = "feast";
+
+                prediction =
+                    "You have ₹" +
+                    budget +
+                    ". This is dangerous. Order biryani, lime soda, and one completely unnecessary dessert.";
+
+            }
+
+
+            /*
+            ==========================================
+            RICH + LOW TIME
+            ==========================================
+            */
+
+            else if (
+                budget > 500 &&
+                time <= 5
+            ) {
+
+                title = "THE FINANCIAL SPEEDRUN";
+
+                emoji = "💸";
+
+                animation = "money";
+
+                prediction =
+                    "You have plenty of money and absolutely no time. Buy nothing. Congratulations. You have achieved financial enlightenment.";
+
+            }
+
+
+            /*
+            ==========================================
+            RICH
+            ==========================================
+            */
+
+            else if (budget > 500) {
+
+                title = "THE MILLIONAIRE PROTOCOL";
+
+                emoji = "💰";
+
+                animation = "money";
+
+                prediction =
+                    "You have ₹" +
+                    budget +
+                    ". Go to the fanciest place nearby. Order something you cannot pronounce and pretend you understand the ingredients.";
+
+            }
+
+
+            /*
+            ==========================================
+            DEFAULT
+            ==========================================
+            */
+
+            else {
+
+                const choices = [
+
+                    {
+                        title: "THE BIRYANI DESTINY",
+                        emoji: "🍛",
+                        animation: "biryani",
+                        text:
+                        "Order biryani. The Oracle has spoken. Nobody knows why."
+                    },
+
+                    {
+                        title: "THE RANDOM STRATEGY",
+                        emoji: "🎲",
+                        animation: "random",
+                        text:
+                        "Order whatever the person in front of you ordered. They clearly know something you don't."
+                    },
+
+                    {
+                        title: "THE UNIVERSAL SOLUTION",
+                        emoji: "🍽️",
+                        animation: "feast",
+                        text:
+                        "Eat something. The Oracle is surprisingly useful today."
+                    }
+
+                ];
+
+
+                const choice =
+                    choices[
+                        Math.floor(
+                            Math.random() *
+                            choices.length
+                        )
+                    ];
+
+
+                title = choice.title;
+                emoji = choice.emoji;
+                animation = choice.animation;
+                prediction = choice.text;
+            }
+
+
+            /*
+            ==========================================
+            RANDOM STATS
+            ==========================================
+            */
+
+            const confidence =
+                Math.floor(
+                    Math.random() * 45
+                ) + 5;
+
+
+            const damage =
+                Math.floor(
+                    Math.random() * 100
+                ) + 50;
+
+
+            const usefulness =
+                Math.floor(
+                    Math.random() * 12
+                );
+
+
+            /*
+            ==========================================
+            SAVE RESULT
+            ==========================================
+            */
+
+            const result = {
+
+                budget: budget,
+
+                time: time,
+
+                title: title,
+
+                emoji: emoji,
+
+                animation: animation,
+
+                prediction: prediction,
+
+                confidence: confidence,
+
+                damage: damage,
+
+                usefulness: usefulness
+
+            };
+
+
+            localStorage.setItem(
+                "oracleResult",
+                JSON.stringify(result)
             );
+
+
+            /*
+            ==========================================
+            GO TO RESULT PAGE
+            ==========================================
+            */
+
+            window.location.href =
+                "result.html";
 
         }
 
-    }
 
-}
+        /*
+        ==========================================
+        SHAKE CARD
+        ==========================================
+        */
 
+        function shakeCard() {
 
-/* =========================================================
-   BASIC SOUND
-   ========================================================= */
+            const card =
+                document.querySelector(".oracle-card");
 
-function sound(
-    frequency,
-    duration,
-    type = "sine",
-    volume = 0.05
-) {
+            card.classList.remove("shake");
 
-    if (!audioContext) return;
+            void card.offsetWidth;
 
-    const oscillator =
-        audioContext.createOscillator();
+            card.classList.add("shake");
 
-    const gain =
-        audioContext.createGain();
+        }
 
-
-    oscillator.type = type;
-
-    oscillator.frequency.setValueAtTime(
-        frequency,
-        audioContext.currentTime
-    );
-
-
-    gain.gain.setValueAtTime(
-        0,
-        audioContext.currentTime
-    );
-
-
-    gain.gain.linearRampToValueAtTime(
-        volume,
-        audioContext.currentTime + 0.02
-    );
-
-
-    gain.gain.exponentialRampToValueAtTime(
-        0.001,
-        audioContext.currentTime + duration
-    );
-
-
-    oscillator.connect(gain);
-
-    gain.connect(masterGain);
-
-
-    oscillator.start();
-
-    oscillator.stop(
-        audioContext.currentTime +
-        duration
-    );
-
-}
-
-
-/* =========================================================
-   COMEDY SOUND EFFECTS
-   ========================================================= */
-
-function tinyBlip() {
-
-    sound(
-        700,
-        0.08,
-        "square",
-        0.035
-    );
-
-}
-
-
-function dramaticBoom() {
-
-    sound(
-        80,
-        0.6,
-        "sawtooth",
-        0.08
-    );
-
-    setTimeout(() => {
-
-        sound(
-            45,
-            0.5,
-            "triangle",
-            0.05
-        );
-
-    }, 100);
-
-}
-
-
-function moneySound() {
-
-    sound(
-        800,
-        0.1,
-        "sine",
-        0.05
-    );
-
-    setTimeout(() => {
-
-        sound(
-            1200,
-            0.15,
-            "sine",
-            0.05
-        );
-
-    }, 100);
-
-}
-
-
-function panicSound() {
-
-    sound(
-        500,
-        0.08,
-        "square",
-        0.05
-    );
-
-    setTimeout(() => {
-
-        sound(
-            750,
-            0.08,
-            "square",
-            0.05
-        );
-
-    }, 100);
-
-    setTimeout(() => {
-
-        sound(
-            950,
-            0.12,
-            "square",
-            0.05
-        );
-
-    }, 200);
-
-}
-
-
-/* =========================================================
-   STOP MUSIC
-   ========================================================= */
-
-function stopMusic() {
-
-    if (musicTimer) {
-
-        clearInterval(
-            musicTimer
-        );
-
-        musicTimer = null;
-    }
-
-}
-
-
-/* =========================================================
-   ₹0 MUSIC
-   SAD FUNERAL
-   ========================================================= */
-
-function funeralMusic() {
-
-    stopMusic();
-
-    const notes = [
-        130.81,
-        116.54,
-        103.83,
-        92.50
-    ];
-
-    let i = 0;
-
-    musicTimer =
-        setInterval(() => {
-
-            sound(
-                notes[i % notes.length],
-                1.5,
-                "triangle",
-                0.07
-            );
-
-            i++;
-
-        }, 1500);
-
-}
-
-
-/* =========================================================
-   ₹1-₹50
-   SAD VIOLIN ENERGY
-   ========================================================= */
-
-function sadMusic() {
-
-    stopMusic();
-
-    const notes = [
-        261.63,
-        246.94,
-        220,
-        196,
-        220,
-        246.94
-    ];
-
-    let i = 0;
-
-    musicTimer =
-        setInterval(() => {
-
-            sound(
-                notes[i % notes.length],
-                0.7,
-                "triangle",
-                0.045
-            );
-
-            i++;
-
-        }, 600);
-
-}
-
-
-/* =========================================================
-   ₹51-₹100
-   CONFUSED SAMOSA MUSIC
-   ========================================================= */
-
-function confusedMusic() {
-
-    stopMusic();
-
-    const notes = [
-        261.63,
-        329.63,
-        293.66,
-        369.99,
-        311.13
-    ];
-
-    let i = 0;
-
-    musicTimer =
-        setInterval(() => {
-
-            sound(
-                notes[i % notes.length],
-                0.22,
-                "square",
-                0.03
-            );
-
-            i++;
-
-        }, 300);
-
-}
-
-
-/* =========================================================
-   ₹101-₹500
-   HAPPY MUSIC
-   ========================================================= */
-
-function happyMusic() {
-
-    stopMusic();
-
-    const notes = [
-        261.63,
-        329.63,
-        392,
-        523.25,
-        392,
-        329.63
-    ];
-
-    let i = 0;
-
-    musicTimer =
-        setInterval(() => {
-
-            sound(
-                notes[i % notes.length],
-                0.28,
-                "sine",
-                0.045
-            );
-
-            i++;
-
-        }, 260);
-
-}
-
-
-/* =========================================================
-   ₹500+
-   ROYAL FANFARE
-   ========================================================= */
-
-function richMusic() {
-
-    stopMusic();
-
-    const notes = [
-        261.63,
-        329.63,
-        392,
-        523.25,
-        659.25,
-        783.99
-    ];
-
-    let i = 0;
-
-    musicTimer =
-        setInterval(() => {
-
-            sound(
-                notes[i % notes.length],
-                0.4,
-                "sine",
-                0.055
-            );
-
-            i++;
-
-        }, 220);
-
-}
-
-
-/* =========================================================
-   CHOOSE MUSIC
-   ========================================================= */
-
-function playBudgetMusic(budget) {
-
-    unlockAudio();
-
-    if (budget <= 0) {
-
-        funeralMusic();
-
-    }
-
-    else if (budget <= 50) {
-
-        sadMusic();
-
-    }
-
-    else if (budget <= 100) {
-
-        confusedMusic();
-
-    }
-
-    else if (budget <= 500) {
-
-        happyMusic();
-
-    }
-
-    else {
-
-        richMusic();
-
-    }
-
-}
-
-
-/* =========================================================
-   LIVE ORACLE SPEECH
-   ========================================================= */
-
-function updateSpeech() {
-
-    const budget =
-        Number(
-            document.getElementById(
-                "budget"
-            ).value
-        );
-
-    const time =
-        Number(
-            document.getElementById(
-                "time"
-            ).value
-        );
-
-
-    const speech =
-        document.getElementById(
-            "oracleSpeech"
-        );
-
-
-    if (!budget && !time) {
-
-        speech.innerText =
-            "Come closer, mortal...";
-
-        return;
-
-    }
-
-
-    if (time && time <= 3) {
-
-        speech.innerText =
-            "THREE MINUTES?! WHY ARE YOU STILL HERE?!";
-
-        return;
-
-    }
-
-
-    if (budget <= 0) {
-
-        speech.innerText =
-            "You have ZERO rupees?!";
-
-    }
-
-    else if (budget <= 20) {
-
-        speech.innerText =
-            "Twenty rupees... oh dear.";
-
-    }
-
-    else if (budget <= 50) {
-
-        speech.innerText =
-            "Your wallet is making noises.";
-
-    }
-
-    else if (budget <= 100) {
-
-        speech.innerText =
-            "Ah. Samosa territory.";
-
-    }
-
-    else if (budget <= 500) {
-
-        speech.innerText =
-            "Okayyy, somebody has money.";
-
-    }
-
-    else {
-
-        speech.innerText =
-            "WAIT. ARE YOU A BILLIONAIRE?!";
-
-    }
-
-}
-
-
-/* =========================================================
-   INPUT LISTENERS
-   ========================================================= */
-
-document
-    .getElementById("budget")
-    .addEventListener(
-        "input",
-        updateSpeech
-    );
-
-
-document
-    .getElementById("time")
-    .addEventListener(
-        "input",
-        updateSpeech
-    );
-
-
-/* =========================================================
-   EXAMPLE
-   ========================================================= */
-
-function example(
-    budget,
-    time
-) {
-
-    document.getElementById(
-        "budget"
-    ).value = budget;
-
-
-    document.getElementById(
-        "time"
-    ).value = time;
-
-
-    updateSpeech();
-
-    playBudgetMusic(
-        budget
-    );
-
-}
-
-
-/* =========================================================
-   CONSULT ORACLE
-   ========================================================= */
-
-function consultOracle() {
-
-    const budget =
-        Number(
-            document.getElementById(
-                "budget"
-            ).value
-        );
-
-
-    const time =
-        Number(
-            document.getElementById(
-                "time"
-            ).value
-        );
-
-
-    if (
-        isNaN(budget) ||
-        budget < 0 ||
-        isNaN(time) ||
-        time <= 0
-    ) {
-
-        document.getElementById(
-            "oracleSpeech"
-        ).innerText =
-            "Please enter actual numbers, mortal.";
-
-        dramaticBoom();
-
-        return;
-
-    }
-
-
-    unlockAudio();
-
-    playBudgetMusic(
-        budget
-    );
-
-
-    const button =
-        document.querySelector(
-            ".oracle-button"
-        );
-
-
-    button.classList.add(
-        "consulting"
-    );
-
-
-    const speech =
-        document.getElementById(
-            "oracleSpeech"
-        );
-
-
-    speech.innerText =
-        "Hmm... interesting.";
-
-
-    tinyBlip();
-
-
-    setTimeout(() => {
-
-        speech.innerText =
-            "Calculating wallet damage...";
-
-        moneySound();
-
-    }, 1000);
-
-
-    setTimeout(() => {
-
-        speech.innerText =
-            "Consulting the samosa spirits...";
-
-        tinyBlip();
-
-    }, 2000);
-
-
-    setTimeout(() => {
-
-        speech.innerText =
-            "Oh no.";
-
-        dramaticBoom();
-
-    }, 3000);
-
-
-    setTimeout(() => {
-
-        speech.innerText =
-            "I know exactly what you should eat.";
-
-    }, 3700);
-
-
-    setTimeout(() => {
-
-        generateResult(
-            budget,
-            time
-        );
-
-    }, 4700);
-
-}
-
-
-/* =========================================================
-   GENERATE RESULT
-   ========================================================= */
-
-function generateResult(
-    budget,
-    time
-) {
-
-    let title;
-    let prediction;
-    let emoji;
-
-
-    /* ZERO */
-
-    if (budget <= 0) {
-
-        title =
-            "FINANCIAL EXTINCTION";
-
-        prediction =
-            "You have ₹0. The Oracle recommends standing near someone who is eating and hoping they suddenly become generous.";
-
-        emoji =
-            "💀";
-
-    }
-
-
-    /* VERY LOW */
-
-    else if (budget <= 20) {
-
-        title =
-            "WALLET CRITICAL";
-
-        prediction =
-            "₹" +
-            budget +
-            "? You didn't give the Oracle a budget. You gave it a cry for help.";
-
-        emoji =
-            "😭";
-
-    }
-
-
-    /* LOW */
-
-    else if (budget <= 50) {
-
-        title =
-            "BISCUIT EMERGENCY";
-
-        prediction =
-            "Your wallet is currently experiencing technical difficulties. Acquire biscuits and pretend this was the plan.";
-
-        emoji =
-            "🍪";
-
-    }
-
-
-    /* MEDIUM */
-
-    else if (budget <= 100) {
-
-        title =
-            "SAMOSA ECONOMICS";
-
-        prediction =
-            "Congratulations. You can afford a samosa, a drink, and approximately 14 seconds of financial confidence.";
-
-        emoji =
-            "🥟";
-
-    }
-
-
-    /* GOOD */
-
-    else if (budget <= 500) {
-
-        title =
-            "DANGEROUSLY COMFORTABLE";
-
-        prediction =
-            "You have enough money to make a questionable food decision and still have money left to regret it.";
-
-        emoji =
-            "🍛";
-
-    }
-
-
-    /* RICH */
-
-    else {
-
-        title =
-            "CANTEEN BILLIONAIRE";
-
-        prediction =
-            "At this point you're not ordering food. You're making an acquisition. Buy whatever you want, Your Majesty.";
-
-        emoji =
-            "👑";
-
-    }
-
-
-    /* TIME CHAOS */
-
-    if (time <= 3) {
-
-        title =
-            "GET TO THE CANTEEN. NOW.";
-
-        prediction =
-            "You have " +
-            time +
-            " minute(s). WHY ARE YOU READING THIS?! MOVE YOUR LEGS.";
-
-        emoji =
-            "🏃";
-
-    }
-
-
-    const result = {
-
-        budget: budget,
-
-        time: time,
-
-        title: title,
-
-        prediction: prediction,
-
-        emoji: emoji
-
-    };
-
-
-    localStorage.setItem(
-        "oracleResult",
-        JSON.stringify(result)
-    );
-
-
-    window.location.href =
-        "result.html";
-
-}
-
-
-/* =========================================================
-   AUTOMATIC MUSIC
-   ========================================================= */
-
-window.addEventListener(
-    "load",
-    () => {
-
-        setTimeout(() => {
-
-            /*
-                Browser may block this.
-                First user interaction will
-                automatically unlock it.
-            */
-
-            playBudgetMusic(0);
-
-        }, 600);
-
-    }
-);
-
-
-/* =========================================================
-   AUTO UNLOCK
-   ========================================================= */
-
-document.addEventListener(
-    "click",
-    () => {
-
-        unlockAudio();
-
-        const budget =
-            Number(
-                document.getElementById(
-                    "budget"
-                ).value
-            ) || 0;
-
-        playBudgetMusic(
-            budget
-        );
-
-    },
-    { once: true }
-);
-
-
-/* =========================================================
-   BACKGROUND PARTICLES
-   ========================================================= */
-
-const particleContainer =
-    document.querySelector(
-        ".particles"
-    );
-
-
-for (
-    let i = 0;
-    i < 45;
-    i++
-) {
-
-    const particle =
-        document.createElement(
-            "span"
-        );
-
-
-    particle.className =
-        "particle";
-
-
-    particle.style.left =
-        Math.random() * 100 +
-        "%";
-
-
-    particle.style.animationDelay =
-        Math.random() * 8 +
-        "s";
-
-
-    particle.style.animationDuration =
-        5 +
-        Math.random() * 8 +
-        "s";
-
-
-    particleContainer.appendChild(
-        particle
-    );
-
-}
-
-</script>
+    </script>
 
 </body>
 </html>

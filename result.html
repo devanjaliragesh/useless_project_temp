@@ -10,2234 +10,623 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Your Destiny 🔮</title>
+    <title>The Oracle Has Spoken 🔮</title>
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
 
-<body>
+<body class="result-page">
 
-<div class="particles"></div>
+    <div id="animation-container"></div>
 
-
-<main class="result-container">
-
-
-    <div class="tiny-label">
-        ✦ THE ORACLE HAS SPOKEN ✦
-    </div>
+    <div class="result-particles"></div>
 
 
-    <h1 class="result-heading">
-        YOUR <span>DESTINY</span>
-    </h1>
+    <main class="result-container">
 
 
-    <!-- =================================================
-         FOOD ROULETTE
-    ================================================== -->
+        <div class="result-header">
 
-    <section
-        id="roulette"
-        class="roulette"
-    >
-
-        <div class="roulette-label">
-            THE FOOD SPIRITS ARE DECIDING...
-        </div>
-
-
-        <div
-            id="rouletteEmoji"
-            class="roulette-emoji"
-        >
-            🍕
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         RESULT CARD
-    ================================================== -->
-
-    <section
-        id="resultCard"
-        class="result-card hidden"
-    >
-
-        <div
-            id="resultEmoji"
-            class="result-emoji"
-        >
-            🍕
-        </div>
-
-
-        <div
-            id="resultMood"
-            class="result-mood"
-        >
-            THE ORACLE SAYS
-        </div>
-
-
-        <h2 id="resultTitle">
-            YOUR DESTINY
-        </h2>
-
-
-        <p
-            id="resultPrediction"
-            class="prediction"
-        >
-        </p>
-
-
-        <!-- DETAILS -->
-
-        <div class="result-details">
-
-            <div>
-
-                <span>
-                    💰 Budget
-                </span>
-
-                <strong id="resultBudget">
-                    ₹0
-                </strong>
-
+            <div class="small-label">
+                ✦ ORACLE TRANSMISSION RECEIVED ✦
             </div>
 
-
-            <div>
-
-                <span>
-                    ⏰ Time
-                </span>
-
-                <strong id="resultTime">
-                    0 minutes
-                </strong>
-
-            </div>
+            <h1>
+                THE ORACLE<br>
+                <span>HAS SPOKEN</span>
+            </h1>
 
         </div>
 
 
-        <!-- =================================================
-             ORACLE STATS
-        ================================================== -->
-
-        <div class="stats">
+        <section class="prediction-card">
 
 
-            <div class="stat">
-
-                <div class="stat-top">
-
-                    <span>
-                        🔮 Oracle Confidence
-                    </span>
-
-                    <strong>
-                        97%
-                    </strong>
-
-                </div>
-
-
-                <div class="bar">
-
-                    <div
-                        class="bar-fill"
-                        style="width:97%"
-                    ></div>
-
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-top">
-
-                    <span>
-                        💸 Financial Damage
-                    </span>
-
-                    <strong id="damage">
-                        0%
-                    </strong>
-
-                </div>
-
-
-                <div class="bar">
-
-                    <div
-                        id="damageBar"
-                        class="bar-fill"
-                    ></div>
-
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-top">
-
-                    <span>
-                        🤡 Actual Usefulness
-                    </span>
-
-                    <strong>
-                        3%
-                    </strong>
-
-                </div>
-
-
-                <div class="bar">
-
-                    <div
-                        class="bar-fill"
-                        style="width:3%"
-                    ></div>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- WARNING -->
-
-        <div class="warning">
-
-            ⚠️
-
-            <span>
-                The Oracle is not legally responsible
-                for your lunch.
-            </span>
-
-        </div>
-
-
-        <!-- BUTTONS -->
-
-        <div class="result-buttons">
-
-            <button
-                onclick="hearDestiny()"
-                class="secondary-button"
+            <div
+                class="prediction-animation"
+                id="predictionAnimation"
             >
-                🔊 Let The Oracle Speak
-            </button>
+
+                <div
+                    class="big-emoji"
+                    id="bigEmoji"
+                >
+                    🔮
+                </div>
+
+            </div>
 
 
-            <button
-                onclick="consultAgain()"
-                class="primary-button"
-            >
-                🔮 Ask Again
-            </button>
+            <div class="prediction-content">
 
-        </div>
+                <div class="prediction-label">
+                    YOUR DESTINY
+                </div>
 
 
-    </section>
+                <h2 id="predictionTitle">
+                    LOADING...
+                </h2>
 
 
-    <footer>
-        The Oracle has spoken. Please don't argue with it.
-    </footer>
+                <div
+                    class="prediction-text"
+                    id="predictionText"
+                >
+                    Consulting the ancient canteen scrolls...
+                </div>
 
 
-</main>
+                <div class="input-summary">
+
+                    <div>
+                        <span>💰 BUDGET</span>
+                        <strong id="budget"></strong>
+                    </div>
+
+                    <div>
+                        <span>⏱️ LIME LEFT</span>
+                        <strong id="time"></strong>
+                    </div>
+
+                </div>
 
 
-<script>
-
-/* =========================================================
-   LOAD DATA
-   ========================================================= */
-
-const saved =
-    localStorage.getItem(
-        "oracleResult"
-    );
+                <div class="stats">
 
 
-if (!saved) {
+                    <div class="stat-card">
 
-    window.location.href =
-        "index.html";
+                        <div class="stat-icon">
+                            🔮
+                        </div>
 
-}
+                        <div>
+                            <span>ORACLE CONFIDENCE</span>
 
+                            <strong id="confidence">
+                                0%
+                            </strong>
+                        </div>
 
-const data =
-    JSON.parse(saved);
-
-
-/* =========================================================
-   AUDIO
-   ========================================================= */
-
-let audioContext = null;
-let masterGain = null;
-let musicTimer = null;
+                    </div>
 
 
-function initAudio() {
+                    <div class="stat-card">
 
-    if (audioContext) return;
+                        <div class="stat-icon">
+                            💸
+                        </div>
 
+                        <div>
+                            <span>FINANCIAL DAMAGE</span>
 
-    audioContext =
-        new (
-            window.AudioContext ||
-            window.webkitAudioContext
-        )();
+                            <strong id="damage">
+                                0%
+                            </strong>
+                        </div>
 
-
-    masterGain =
-        audioContext.createGain();
-
-
-    masterGain.gain.value =
-        0.12;
+                    </div>
 
 
-    masterGain.connect(
-        audioContext.destination
-    );
+                    <div class="stat-card">
 
-}
+                        <div class="stat-icon">
+                            🧠
+                        </div>
+
+                        <div>
+                            <span>USEFULNESS</span>
+
+                            <strong id="usefulness">
+                                0%
+                            </strong>
+                        </div>
+
+                    </div>
 
 
-async function unlockAudio() {
-
-    initAudio();
+                </div>
 
 
-    if (
-        audioContext.state ===
-        "suspended"
-    ) {
+                <div class="oracle-warning">
 
-        try {
+                    ⚠️
+                    <span>
+                        The Oracle accepts absolutely no responsibility
+                        for what happens next.
+                    </span>
 
-            await audioContext.resume();
+                </div>
 
-        } catch (error) {
 
-            console.log(
-                "Audio blocked"
-            );
+                <div class="result-buttons">
+
+                    <button
+                        class="again-button"
+                        onclick="consultAgain()"
+                    >
+                        🔮 CONSULT AGAIN
+                    </button>
+
+
+                    <button
+                        class="back-button"
+                        onclick="goBack()"
+                    >
+                        ← CHANGE MY INPUT
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+            Canteen Oracle © 2026
+            <br>
+            Powered by questionable mathematics™
+        </footer>
+
+    </main>
+
+
+    <script>
+
+        /*
+        ==========================================
+        GET RESULT
+        ==========================================
+        */
+
+        const stored =
+            localStorage.getItem("oracleResult");
+
+
+        if (!stored) {
+
+            window.location.href =
+                "index.html";
 
         }
 
-    }
 
-}
-
-
-/* =========================================================
-   SOUND
-   ========================================================= */
-
-function sound(
-    frequency,
-    duration,
-    type = "sine",
-    volume = 0.05
-) {
-
-    if (!audioContext) return;
+        const result =
+            JSON.parse(stored);
 
 
-    const oscillator =
-        audioContext.createOscillator();
+        /*
+        ==========================================
+        DISPLAY RESULT
+        ==========================================
+        */
+
+        document.getElementById("bigEmoji")
+            .innerText =
+            result.emoji;
 
 
-    const gain =
-        audioContext.createGain();
+        document.getElementById("predictionTitle")
+            .innerText =
+            result.title;
 
 
-    oscillator.type =
-        type;
+        document.getElementById("predictionText")
+            .innerText =
+            result.prediction;
 
 
-    oscillator.frequency.setValueAtTime(
-        frequency,
-        audioContext.currentTime
-    );
+        document.getElementById("budget")
+            .innerText =
+            "₹" + result.budget;
 
 
-    gain.gain.setValueAtTime(
-        0,
-        audioContext.currentTime
-    );
+        document.getElementById("time")
+            .innerText =
+            result.time + " minutes";
 
 
-    gain.gain.linearRampToValueAtTime(
-        volume,
-        audioContext.currentTime + 0.02
-    );
+        document.getElementById("confidence")
+            .innerText =
+            result.confidence + "%";
 
 
-    gain.gain.exponentialRampToValueAtTime(
-        0.001,
-        audioContext.currentTime +
-        duration
-    );
+        document.getElementById("damage")
+            .innerText =
+            result.damage + "%";
 
 
-    oscillator.connect(gain);
-
-    gain.connect(masterGain);
-
-
-    oscillator.start();
+        document.getElementById("usefulness")
+            .innerText =
+            result.usefulness + "%";
 
 
-    oscillator.stop(
-        audioContext.currentTime +
-        duration
-    );
+        /*
+        ==========================================
+        START ANIMATION
+        ==========================================
+        */
 
-}
-
-
-/* =========================================================
-   SOUND EFFECTS
-   ========================================================= */
-
-function clickSound() {
-
-    sound(
-        700,
-        0.07,
-        "square",
-        0.03
-    );
-
-}
-
-
-function revealSound() {
-
-    sound(
-        300,
-        0.12,
-        "sine",
-        0.05
-    );
-
-
-    setTimeout(() => {
-
-        sound(
-            450,
-            0.12,
-            "sine",
-            0.05
+        startAnimation(
+            result.animation
         );
 
-    }, 120);
 
+        /*
+        ==========================================
+        ANIMATION ENGINE
+        ==========================================
+        */
 
-    setTimeout(() => {
+        function startAnimation(type) {
 
-        sound(
-            650,
-            0.2,
-            "sine",
-            0.06
-        );
-
-    }, 240);
-
-}
-
-
-function panicSound() {
-
-    sound(
-        500,
-        0.08,
-        "square",
-        0.06
-    );
-
-
-    setTimeout(() => {
-
-        sound(
-            700,
-            0.08,
-            "square",
-            0.06
-        );
-
-    }, 100);
-
-
-    setTimeout(() => {
-
-        sound(
-            900,
-            0.08,
-            "square",
-            0.06
-        );
-
-    }, 200);
-
-}
-
-
-/* =========================================================
-   MUSIC
-   ========================================================= */
-
-function stopMusic() {
-
-    if (musicTimer) {
-
-        clearInterval(
-            musicTimer
-        );
-
-        musicTimer = null;
-
-    }
-
-}
-
-
-function funeralMusic() {
-
-    stopMusic();
-
-
-    const notes = [
-        130.81,
-        116.54,
-        103.83,
-        92.50
-    ];
-
-
-    let i = 0;
-
-
-    musicTimer =
-        setInterval(() => {
-
-            sound(
-                notes[
-                    i %
-                    notes.length
-                ],
-                1.4,
-                "triangle",
-                0.07
-            );
-
-
-            i++;
-
-        }, 1400);
-
-}
-
-
-function sadMusic() {
-
-    stopMusic();
-
-
-    const notes = [
-        261.63,
-        246.94,
-        220,
-        196,
-        220,
-        246.94
-    ];
-
-
-    let i = 0;
-
-
-    musicTimer =
-        setInterval(() => {
-
-            sound(
-                notes[
-                    i %
-                    notes.length
-                ],
-                0.7,
-                "triangle",
-                0.045
-            );
-
-
-            i++;
-
-        }, 600);
-
-}
-
-
-function confusedMusic() {
-
-    stopMusic();
-
-
-    const notes = [
-        261.63,
-        329.63,
-        293.66,
-        369.99,
-        311.13
-    ];
-
-
-    let i = 0;
-
-
-    musicTimer =
-        setInterval(() => {
-
-            sound(
-                notes[
-                    i %
-                    notes.length
-                ],
-                0.2,
-                "square",
-                0.03
-            );
-
-
-            i++;
-
-        }, 300);
-
-}
-
-
-function happyMusic() {
-
-    stopMusic();
-
-
-    const notes = [
-        261.63,
-        329.63,
-        392,
-        523.25,
-        392,
-        329.63
-    ];
-
-
-    let i = 0;
-
-
-    musicTimer =
-        setInterval(() => {
-
-            sound(
-                notes[
-                    i %
-                    notes.length
-                ],
-                0.25,
-                "sine",
-                0.045
-            );
-
-
-            i++;
-
-        }, 260);
-
-}
-
-
-function richMusic() {
-
-    stopMusic();
-
-
-    const notes = [
-        261.63,
-        329.63,
-        392,
-        523.25,
-        659.25,
-        783.99
-    ];
-
-
-    let i = 0;
-
-
-    musicTimer =
-        setInterval(() => {
-
-            sound(
-                notes[
-                    i %
-                    notes.length
-                ],
-                0.4,
-                "sine",
-                0.055
-            );
-
-
-            i++;
-
-        }, 220);
-
-}
-
-
-function playBudgetMusic(
-    budget
-) {
-
-    unlockAudio();
-
-
-    if (budget <= 0) {
-
-        funeralMusic();
-
-    }
-
-    else if (budget <= 50) {
-
-        sadMusic();
-
-    }
-
-    else if (budget <= 100) {
-
-        confusedMusic();
-
-    }
-
-    else if (budget <= 500) {
-
-        happyMusic();
-
-    }
-
-    else {
-
-        richMusic();
-
-    }
-
-}
-
-
-/* =========================================================
-   FOOD ROULETTE
-   ========================================================= */
-
-const foodEmojis = [
-
-    "🍕",
-    "🍔",
-    "🍟",
-    "🌮",
-    "🥪",
-    "🍜",
-    "🍛",
-    "🥟",
-    "🍩",
-    "🍪",
-    "🧃",
-    "🥤",
-    "🍗",
-    "🍚",
-    "🌯"
-
-];
-
-
-const rouletteEmoji =
-    document.getElementById(
-        "rouletteEmoji"
-    );
-
-
-let rouletteInterval;
-
-
-function startRoulette() {
-
-    let count = 0;
-
-
-    rouletteInterval =
-        setInterval(() => {
-
-            rouletteEmoji.innerText =
-                foodEmojis[
-                    Math.floor(
-                        Math.random() *
-                        foodEmojis.length
-                    )
-                ];
-
-
-            clickSound();
-
-
-            count++;
-
-
-            if (count >= 25) {
-
-                clearInterval(
-                    rouletteInterval
+            const container =
+                document.getElementById(
+                    "animation-container"
                 );
 
 
-                revealResult();
-
-            }
-
-        }, 110);
-
-}
-
-
-/* =========================================================
-   RESULT REVEAL
-   ========================================================= */
-
-function revealResult() {
-
-    rouletteEmoji.innerText =
-        data.emoji;
-
-
-    document.getElementById(
-        "resultEmoji"
-    ).innerText =
-        data.emoji;
-
-
-    document.getElementById(
-        "resultTitle"
-    ).innerText =
-        data.title;
-
-
-    document.getElementById(
-        "resultPrediction"
-    ).innerText =
-        data.prediction;
-
-
-    document.getElementById(
-        "resultBudget"
-    ).innerText =
-        "₹" +
-        data.budget;
-
-
-    document.getElementById(
-        "resultTime"
-    ).innerText =
-        data.time +
-        " minutes";
-
-
-    /* =====================================================
-       MOOD
-    ===================================================== */
-
-    let mood;
-
-
-    if (data.time <= 3) {
-
-        mood =
-            "🚨 ABSOLUTE PANIC";
-
-    }
-
-    else if (data.budget <= 20) {
-
-        mood =
-            "😭 FINANCIAL SUFFERING";
-
-    }
-
-    else if (data.budget <= 50) {
-
-        mood =
-            "💸 WALLET IN DISTRESS";
-
-    }
-
-    else if (data.budget <= 100) {
-
-        mood =
-            "🥟 SAMOSA ENERGY";
-
-    }
-
-    else if (data.budget <= 500) {
-
-        mood =
-            "😎 SUSPICIOUSLY COMFORTABLE";
-
-    }
-
-    else {
-
-        mood =
-            "👑 FINANCIAL ROYALTY";
-
-    }
-
-
-    document.getElementById(
-        "resultMood"
-    ).innerText =
-        mood;
-
-
-    /* =====================================================
-       FINANCIAL DAMAGE
-    ===================================================== */
-
-    let damage;
-
-
-    if (data.budget <= 20) {
-
-        damage = 99;
-
-    }
-
-    else if (data.budget <= 50) {
-
-        damage = 82;
-
-    }
-
-    else if (data.budget <= 100) {
-
-        damage = 55;
-
-    }
-
-    else if (data.budget <= 500) {
-
-        damage = 73;
-
-    }
-
-    else {
-
-        damage = 100;
-
-    }
-
-
-    document.getElementById(
-        "damage"
-    ).innerText =
-        damage +
-        "%";
-
-
-    document.getElementById(
-        "damageBar"
-    ).style.width =
-        damage +
-        "%";
-
-
-    /* Show */
-
-    document.getElementById(
-        "resultCard"
-    ).classList.remove(
-        "hidden"
-    );
-
-
-    document.getElementById(
-        "resultCard"
-    ).classList.add(
-        "reveal"
-    );
-
-
-    revealSound();
-
-
-    /* Animation */
-
-    startAnimation();
-
-}
-
-
-/* =========================================================
-   RESULT ANIMATION
-   ========================================================= */
-
-function startAnimation() {
-
-    if (data.time <= 3) {
-
-        for (
-            let i = 0;
-            i < 16;
-            i++
-        ) {
-
-            createRunner();
-
-        }
-
-        panicSound();
-
-    }
-
-    else {
-
-        for (
-            let i = 0;
-            i < 18;
-            i++
-        ) {
-
-            createFood();
-
-        }
-
-    }
-
-}
-
-
-function createFood() {
-
-    const food =
-        document.createElement(
-            "div"
-        );
-
-
-    food.className =
-        "falling-food";
-
-
-    food.innerText =
-        data.emoji;
-
-
-    food.style.left =
-        Math.random() * 100 +
-        "%";
-
-
-    food.style.animationDuration =
-        3 +
-        Math.random() * 4 +
-        "s";
-
-
-    document.body.appendChild(
-        food
-    );
-
-
-    setTimeout(() => {
-
-        food.remove();
-
-    }, 7000);
-
-}
-
-
-function createRunner() {
-
-    const runner =
-        document.createElement(
-            "div"
-        );
-
-
-    runner.className =
-        "runner";
-
-
-    runner.innerText =
-        "🏃💨";
-
-
-    runner.style.top =
-        15 +
-        Math.random() * 75 +
-        "%";
-
-
-    runner.style.animationDuration =
-        1 +
-        Math.random() * 1.5 +
-        "s";
-
-
-    document.body.appendChild(
-        runner
-    );
-
-
-    setTimeout(() => {
-
-        runner.remove();
-
-    }, 3500);
-
-}
-
-
-/* =========================================================
-   🔥 THE NEW ORACLE VOICE
-   ========================================================= */
-
-
-/*
-   Instead of reading one giant paragraph,
-   the Oracle speaks short lines.
-
-   This creates:
-   - pauses
-   - reactions
-   - dramatic timing
-   - changing pitch
-   - changing speed
-*/
-
-
-function speakLine(
-    text,
-    options = {}
-) {
-
-    return new Promise(
-        resolve => {
-
-            const speech =
-                new SpeechSynthesisUtterance(
-                    text
+            if (type === "biryani") {
+
+                createFoodAnimation(
+                    "🍛",
+                    12
                 );
-
-
-            speech.rate =
-                options.rate ||
-                0.88;
-
-
-            speech.pitch =
-                options.pitch ||
-                1;
-
-
-            speech.volume = 1;
-
-
-            /*
-               Try to find a more natural voice.
-            */
-
-            const voices =
-                speechSynthesis
-                    .getVoices();
-
-
-            const voice =
-                voices.find(
-                    v =>
-                        /Google US English/i
-                            .test(v.name)
-                )
-
-                ||
-
-                voices.find(
-                    v =>
-                        /Google.*English/i
-                            .test(v.name)
-                )
-
-                ||
-
-                voices.find(
-                    v =>
-                        /Microsoft.*Jenny/i
-                            .test(v.name)
-                )
-
-                ||
-
-                voices.find(
-                    v =>
-                        /Microsoft.*Aria/i
-                            .test(v.name)
-                )
-
-                ||
-
-                voices.find(
-                    v =>
-                        /Samantha/i
-                            .test(v.name)
-                )
-
-                ||
-
-                voices.find(
-                    v =>
-                        /^en-IN/i
-                            .test(v.lang)
-                )
-
-                ||
-
-                voices.find(
-                    v =>
-                        /^en-US/i
-                            .test(v.lang)
-                );
-
-
-            if (voice) {
-
-                speech.voice =
-                    voice;
 
             }
 
 
-            speech.onend =
-                () => {
+            else if (type === "samosa") {
 
-                    setTimeout(
-                        resolve,
-                        options.pause ||
-                        250
+                createFoodAnimation(
+                    "🥟",
+                    15
+                );
+
+            }
+
+
+            else if (type === "biscuit") {
+
+                createFoodAnimation(
+                    "🍪",
+                    18
+                );
+
+            }
+
+
+            else if (type === "money") {
+
+                createFoodAnimation(
+                    "💸",
+                    20
+                );
+
+                createFoodAnimation(
+                    "💰",
+                    10
+                );
+
+            }
+
+
+            else if (type === "running") {
+
+                createRunningPeople();
+
+            }
+
+
+            else if (type === "feast") {
+
+                createFoodAnimation(
+                    "🍛",
+                    7
+                );
+
+                createFoodAnimation(
+                    "🍰",
+                    7
+                );
+
+                createFoodAnimation(
+                    "🥤",
+                    7
+                );
+
+            }
+
+
+            else if (type === "menu") {
+
+                createFoodAnimation(
+                    "📜",
+                    10
+                );
+
+            }
+
+
+            else if (type === "philosophy") {
+
+                createFoodAnimation(
+                    "🧘",
+                    7
+                );
+
+            }
+
+
+            else {
+
+                createFoodAnimation(
+                    "✨",
+                    15
+                );
+
+            }
+
+        }
+
+
+        /*
+        ==========================================
+        FLOATING FOOD
+        ==========================================
+        */
+
+        function createFoodAnimation(
+            emoji,
+            amount
+        ) {
+
+            const container =
+                document.getElementById(
+                    "animation-container"
+                );
+
+
+            for (
+                let i = 0;
+                i < amount;
+                i++
+            ) {
+
+                const element =
+                    document.createElement("div");
+
+
+                element.className =
+                    "floating-food";
+
+
+                element.innerText =
+                    emoji;
+
+
+                element.style.left =
+                    Math.random() * 100 + "%";
+
+
+                element.style.animationDelay =
+                    Math.random() * 4 + "s";
+
+
+                element.style.animationDuration =
+                    (
+                        4 +
+                        Math.random() * 5
+                    ) + "s";
+
+
+                element.style.fontSize =
+                    (
+                        25 +
+                        Math.random() * 35
+                    ) + "px";
+
+
+                container.appendChild(
+                    element
+                );
+
+            }
+
+        }
+
+
+        /*
+        ==========================================
+        RUNNING PEOPLE
+        ==========================================
+        */
+
+        function createRunningPeople() {
+
+            const container =
+                document.getElementById(
+                    "animation-container"
+                );
+
+
+            const people =
+                ["🏃", "🏃‍♀️", "🏃‍♂️", "💨"];
+
+
+            for (
+                let i = 0;
+                i < 10;
+                i++
+            ) {
+
+                const person =
+                    document.createElement("div");
+
+
+                person.className =
+                    "running-person";
+
+
+                person.innerText =
+                    people[
+                        Math.floor(
+                            Math.random() *
+                            people.length
+                        )
+                    ];
+
+
+                person.style.top =
+                    (
+                        10 +
+                        Math.random() * 80
+                    ) + "%";
+
+
+                person.style.animationDelay =
+                    Math.random() * 3 + "s";
+
+
+                person.style.animationDuration =
+                    (
+                        2 +
+                        Math.random() * 3
+                    ) + "s";
+
+
+                container.appendChild(
+                    person
+                );
+
+            }
+
+        }
+
+
+        /*
+        ==========================================
+        BUTTONS
+        ==========================================
+        */
+
+        function consultAgain() {
+
+            window.location.href =
+                "index.html";
+
+        }
+
+
+        function goBack() {
+
+            window.location.href =
+                "index.html";
+
+        }
+
+
+        /*
+        ==========================================
+        CLICK CONFETTI
+        ==========================================
+        */
+
+        document.addEventListener(
+            "click",
+            function(event) {
+
+                for (
+                    let i = 0;
+                    i < 8;
+                    i++
+                ) {
+
+                    const sparkle =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    sparkle.innerText =
+                        ["✨", "⭐", "💫", "✦"][
+                            Math.floor(
+                                Math.random() * 4
+                            )
+                        ];
+
+
+                    sparkle.className =
+                        "click-sparkle";
+
+
+                    sparkle.style.left =
+                        event.clientX + "px";
+
+
+                    sparkle.style.top =
+                        event.clientY + "px";
+
+
+                    sparkle.style.setProperty(
+                        "--x",
+                        (
+                            Math.random() * 160 -
+                            80
+                        ) + "px"
                     );
 
-                };
+
+                    sparkle.style.setProperty(
+                        "--y",
+                        (
+                            Math.random() * 160 -
+                            80
+                        ) + "px"
+                    );
 
 
-            speech.onerror =
-                () => {
-
-                    resolve();
-
-                };
+                    document.body.appendChild(
+                        sparkle
+                    );
 
 
-            speechSynthesis.speak(
-                speech
-            );
+                    setTimeout(
+                        () => sparkle.remove(),
+                        800
+                    );
 
-        }
-    );
+                }
 
-}
-
-
-/* =========================================================
-   HEAR DESTINY
-   ========================================================= */
-
-async function hearDestiny() {
-
-    await unlockAudio();
-
-
-    speechSynthesis.cancel();
-
-
-    /*
-       Small pause before Oracle begins.
-    */
-
-    await new Promise(
-        resolve =>
-            setTimeout(
-                resolve,
-                300
-            )
-    );
-
-
-    /* =====================================================
-       EMERGENCY
-    ===================================================== */
-
-    if (data.time <= 3) {
-
-        await speakLine(
-            "Okay.",
-            {
-                rate: 0.7,
-                pitch: 0.9,
-                pause: 500
             }
         );
 
-
-        await speakLine(
-            "Three minutes.",
-            {
-                rate: 0.65,
-                pitch: 0.8,
-                pause: 500
-            }
-        );
-
-
-        await speakLine(
-            "THREE.",
-            {
-                rate: 0.75,
-                pitch: 1.2,
-                pause: 300
-            }
-        );
-
-
-        panicSound();
-
-
-        await speakLine(
-            "WHY ARE YOU STILL SITTING THERE?!",
-            {
-                rate: 1.05,
-                pitch: 1.25,
-                pause: 200
-            }
-        );
-
-
-        await speakLine(
-            "GO!",
-            {
-                rate: 1.15,
-                pitch: 1.35,
-                pause: 100
-            }
-        );
-
-
-        await speakLine(
-            "GO TO THE CANTEEN!",
-            {
-                rate: 1.1,
-                pitch: 1.3,
-                pause: 100
-            }
-        );
-
-
-        await speakLine(
-            "THIS IS NOT A DRILL!",
-            {
-                rate: 1.05,
-                pitch: 1.2,
-                pause: 100
-            }
-        );
-
-
-        await speakLine(
-            "MOVE!",
-            {
-                rate: 1.2,
-                pitch: 1.4,
-                pause: 100
-            }
-        );
-
-
-        return;
-
-    }
-
-
-    /* =====================================================
-       ₹0
-    ===================================================== */
-
-    if (data.budget <= 0) {
-
-        await speakLine(
-            "Okay...",
-            {
-                rate: 0.7,
-                pitch: 0.9,
-                pause: 600
-            }
-        );
-
-
-        await speakLine(
-            "Wait.",
-            {
-                rate: 0.65,
-                pitch: 0.8,
-                pause: 500
-            }
-        );
-
-
-        await speakLine(
-            "You have zero rupees.",
-            {
-                rate: 0.75,
-                pitch: 0.75,
-                pause: 600
-            }
-        );
-
-
-        await speakLine(
-            "ZERO.",
-            {
-                rate: 0.7,
-                pitch: 0.7,
-                pause: 700
-            }
-        );
-
-
-        dramaticBoom();
-
-
-        await speakLine(
-            "Bro.",
-            {
-                rate: 0.7,
-                pitch: 0.65,
-                pause: 600
-            }
-        );
-
-
-        await speakLine(
-            "Why did you even open this website?",
-            {
-                rate: 0.82,
-                pitch: 1.0,
-                pause: 300
-            }
-        );
-
-
-        await speakLine(
-            "The canteen cannot accept vibes as payment.",
-            {
-                rate: 0.8,
-                pitch: 1.05,
-                pause: 400
-            }
-        );
-
-
-        await speakLine(
-            "Go stand near someone eating.",
-            {
-                rate: 0.82,
-                pitch: 1.0,
-                pause: 250
-            }
-        );
-
-
-        await speakLine(
-            "Look sad.",
-            {
-                rate: 0.75,
-                pitch: 0.9,
-                pause: 250
-            }
-        );
-
-
-        await speakLine(
-            "Maybe they'll feel guilty.",
-            {
-                rate: 0.82,
-                pitch: 1.05,
-                pause: 300
-            }
-        );
-
-
-        return;
-
-    }
-
-
-    /* =====================================================
-       ₹1 - ₹20
-    ===================================================== */
-
-    if (data.budget <= 20) {
-
-        await speakLine(
-            "Okay...",
-            {
-                rate: 0.75,
-                pitch: 0.95,
-                pause: 400
-            }
-        );
-
-
-        await speakLine(
-            `${data.budget} rupees?`,
-            {
-                rate: 0.78,
-                pitch: 1.1,
-                pause: 500
-            }
-        );
-
-
-        await speakLine(
-            "That's not a budget.",
-            {
-                rate: 0.82,
-                pitch: 1.0,
-                pause: 250
-            }
-        );
-
-
-        await speakLine(
-            "That's a cry for help.",
-            {
-                rate: 0.82,
-                pitch: 1.05,
-                pause: 400
-            }
-        );
-
-
-        moneySound();
-
-
-        await speakLine(
-            "Your wallet has approximately three working brain cells left.",
-            {
-                rate: 0.82,
-                pitch: 1.05,
-                pause: 350
-            }
-        );
-
-
-        await speakLine(
-            "Buy a biscuit.",
-            {
-                rate: 0.8,
-                pitch: 1.0,
-                pause: 300
-            }
-        );
-
-
-        await speakLine(
-            "Eat it slowly.",
-            {
-                rate: 0.72,
-                pitch: 0.95,
-                pause: 250
-            }
-        );
-
-
-        await speakLine(
-            "Pretend it's a five-course meal.",
-            {
-                rate: 0.82,
-                pitch: 1.08,
-                pause: 400
-            }
-        );
-
-
-        return;
-
-    }
-
-
-    /* =====================================================
-       ₹21 - ₹50
-    ===================================================== */
-
-    if (data.budget <= 50) {
-
-        await speakLine(
-            "Hmm.",
-            {
-                rate: 0.7,
-                pitch: 1.0,
-                pause: 400
-            }
-        );
-
-
-        await speakLine(
-            "Okay.",
-            {
-                rate: 0.75,
-                pitch: 1.05,
-                pause: 300
-            }
-        );
-
-
-        await speakLine(
-            "Your wallet is alive.",
-            {
-                rate: 0.82,
-                pitch: 1.08,
-                pause: 250
-            }
-        );
-
-
-        await speakLine(
-            "Barely.",
-            {
-                rate: 0.65,
-                pitch: 0.9,
-                pause: 500
-            }
-        );
-
-
-        await speakLine(
-            "Get biscuits.",
-            {
-                rate: 0.8,
-                pitch: 1.0,
-                pause: 250
-            }
-        );
-
-
-        await speakLine(
-            "Maybe tea.",
-            {
-                rate: 0.75,
-                pitch: 1.05,
-                pause: 250
-            }
-        );
-
-
-        await speakLine(
-            "Do NOT look at the biryani.",
-            {
-                rate: 0.85,
-                pitch: 1.15,
-                pause: 300
-            }
-        );
-
-
-        await speakLine(
-            "It knows you can't afford it.",
-            {
-                rate: 0.82,
-                pitch: 1.0,
-                pause: 400
-            }
-        );
-
-
-        return;
-
-    }
-
-
-    /* =====================================================
-       ₹51 - ₹100
-    ===================================================== */
-
-    if (data.budget <= 100) {
-
-        await speakLine(
-            "Ooooh.",
-            {
-                rate: 0.7,
-                pitch: 1.15,
-                pause: 350
-            }
-        );
-
-
-        await speakLine(
-            "Now we're talking.",
-            {
-                rate: 0.82,
-                pitch: 1.12,
-                pause: 300
-            }
-        );
-
-
-        await speakLine(
-            "Samosa territory.",
-            {
-                rate: 0.82,
-                pitch: 1.05,
-                pause: 350
-            }
-        );
-
-
-        await speakLine(
-            "One samosa.",
-            {
-                rate: 0.75,
-                pitch: 1.0,
-                pause: 200
-            }
-        );
-
-
-        await speakLine(
-            "One drink.",
-            {
-                rate: 0.75,
-                pitch: 1.0,
-                pause: 200
-            }
-        );
-
-
-        await speakLine(
-            "And if you're brave...",
-            {
-                rate: 0.75,
-                pitch: 1.08,
-                pause: 350
-            }
-        );
-
-
-        await speakLine(
-            "ANOTHER SAMOSA.",
-            {
-                rate: 0.9,
-                pitch: 1.25,
-                pause: 400
-            }
-        );
-
-
-        await speakLine(
-            "Congratulations.",
-            {
-                rate: 0.8,
-                pitch: 1.0,
-                pause: 200
-            }
-        );
-
-
-        await speakLine(
-            "You have beaten the economy.",
-            {
-                rate: 0.82,
-                pitch: 1.08,
-                pause: 350
-            }
-        );
-
-
-        return;
-
-    }
-
-
-    /* =====================================================
-       ₹101 - ₹500
-    ===================================================== */
-
-    if (data.budget <= 500) {
-
-        await speakLine(
-            "WAIT.",
-            {
-                rate: 0.7,
-                pitch: 1.25,
-                pause: 350
-            }
-        );
-
-
-        await speakLine(
-            "Hold on.",
-            {
-                rate: 0.72,
-                pitch: 1.15,
-                pause: 300
-            }
-        );
-
-
-        await speakLine(
-            "You actually have money.",
-            {
-                rate: 0.82,
-                pitch: 1.1,
-                pause: 350
-            }
-        );
-
-
-        moneySound();
-
-
-        await speakLine(
-            `${data.budget} rupees?!`,
-            {
-                rate: 0.88,
-                pitch: 1.25,
-                pause: 450
-            }
-        );
-
-
-        await speakLine(
-            "Who gave you financial freedom?",
-            {
-                rate: 0.85,
-                pitch: 1.12,
-                pause: 300
-            }
-        );
-
-
-        await speakLine(
-            "Order something stupid.",
-            {
-                rate: 0.82,
-                pitch: 1.15,
-                pause: 250
-            }
-        );
-
-
-        await speakLine(
-            "Extra cheese.",
-            {
-                rate: 0.75,
-                pitch: 1.1,
-                pause: 180
-            }
-        );
-
-
-        await speakLine(
-            "Extra sauce.",
-            {
-                rate: 0.75,
-                pitch: 1.1,
-                pause: 180
-            }
-        );
-
-
-        await speakLine(
-            "Extra regret.",
-            {
-                rate: 0.78,
-                pitch: 0.95,
-                pause: 350
-            }
-        );
-
-
-        await speakLine(
-            "You've earned it.",
-            {
-                rate: 0.8,
-                pitch: 1.08,
-                pause: 300
-            }
-        );
-
-
-        return;
-
-    }
-
-
-    /* =====================================================
-       ₹500+
-    ===================================================== */
-
-    await speakLine(
-        "Excuse me.",
-        {
-            rate: 0.7,
-            pitch: 1.0,
-            pause: 500
-        }
-    );
-
-
-    await speakLine(
-        "WHAT?",
-        {
-            rate: 0.8,
-            pitch: 1.35,
-            pause: 400
-        }
-    );
-
-
-    await speakLine(
-        `${data.budget} rupees?!`,
-        {
-            rate: 0.85,
-            pitch: 1.3,
-            pause: 450
-        }
-    );
-
-
-    moneySound();
-
-
-    await speakLine(
-        "Are you okay?",
-        {
-            rate: 0.78,
-            pitch: 1.1,
-            pause: 300
-        }
-    );
-
-
-    await speakLine(
-        "Are you secretly the canteen owner?",
-        {
-            rate: 0.82,
-            pitch: 1.12,
-            pause: 400
-        }
-    );
-
-
-    await speakLine(
-        "At this point...",
-        {
-            rate: 0.72,
-            pitch: 1.0,
-            pause: 300
-        }
-    );
-
-
-    await speakLine(
-        "YOU are the menu.",
-        {
-            rate: 0.85,
-            pitch: 1.25,
-            pause: 400
-        }
-    );
-
-
-    await speakLine(
-        "Buy everything.",
-        {
-            rate: 0.82,
-            pitch: 1.1,
-            pause: 250
-        }
-    );
-
-
-    await speakLine(
-        "Feed your friends.",
-        {
-            rate: 0.8,
-            pitch: 1.05,
-            pause: 250
-        }
-    );
-
-
-    await speakLine(
-        "Feed your enemies.",
-        {
-            rate: 0.82,
-            pitch: 1.05,
-            pause: 250
-        }
-    );
-
-
-    await speakLine(
-        "Feed the Oracle.",
-        {
-            rate: 0.82,
-            pitch: 1.2,
-            pause: 350
-        }
-    );
-
-
-    await speakLine(
-        "Today...",
-        {
-            rate: 0.7,
-            pitch: 0.95,
-            pause: 300
-        }
-    );
-
-
-    await speakLine(
-        "YOU ARE THE ECONOMY.",
-        {
-            rate: 0.9,
-            pitch: 1.3,
-            pause: 500
-        }
-    );
-
-}
-
-
-/* =========================================================
-   BUTTONS
-   ========================================================= */
-
-function consultAgain() {
-
-    speechSynthesis.cancel();
-
-    stopMusic();
-
-    window.location.href =
-        "index.html";
-
-}
-
-
-/* =========================================================
-   AUTO START
-   ========================================================= */
-
-window.addEventListener(
-    "load",
-    () => {
-
-        setTimeout(() => {
-
-            unlockAudio();
-
-            playBudgetMusic(
-                data.budget
-            );
-
-            startRoulette();
-
-        }, 500);
-
-    }
-);
-
-
-/* =========================================================
-   FIRST CLICK UNLOCK
-   ========================================================= */
-
-document.addEventListener(
-    "click",
-    () => {
-
-        unlockAudio();
-
-        playBudgetMusic(
-            data.budget
-        );
-
-    },
-    { once: true }
-);
-
-
-/* =========================================================
-   CLICK SPARKLES
-   ========================================================= */
-
-document.addEventListener(
-    "click",
-    event => {
-
-        for (
-            let i = 0;
-            i < 5;
-            i++
-        ) {
-
-            const sparkle =
-                document.createElement(
-                    "div"
-                );
-
-
-            sparkle.className =
-                "click-sparkle";
-
-
-            sparkle.innerText =
-                "✦";
-
-
-            sparkle.style.left =
-                event.clientX +
-                "px";
-
-
-            sparkle.style.top =
-                event.clientY +
-                "px";
-
-
-            sparkle.style.setProperty(
-                "--x",
-                (
-                    Math.random() *
-                    80 -
-                    40
-                ) +
-                "px"
-            );
-
-
-            sparkle.style.setProperty(
-                "--y",
-                (
-                    Math.random() *
-                    80 -
-                    40
-                ) +
-                "px"
-            );
-
-
-            document.body.appendChild(
-                sparkle
-            );
-
-
-            setTimeout(() => {
-
-                sparkle.remove();
-
-            }, 800);
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   PARTICLES
-   ========================================================= */
-
-const particleContainer =
-    document.querySelector(
-        ".particles"
-    );
-
-
-for (
-    let i = 0;
-    i < 45;
-    i++
-) {
-
-    const particle =
-        document.createElement(
-            "span"
-        );
-
-
-    particle.className =
-        "particle";
-
-
-    particle.style.left =
-        Math.random() * 100 +
-        "%";
-
-
-    particle.style.animationDelay =
-        Math.random() * 8 +
-        "s";
-
-
-    particle.style.animationDuration =
-        5 +
-        Math.random() * 8 +
-        "s";
-
-
-    particleContainer.appendChild(
-        particle
-    );
-
-}
-
-</script>
+    </script>
 
 </body>
+
 </html>
