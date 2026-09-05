@@ -2,91 +2,99 @@
 
 
 
-# [Project Name] 🎯
+# [Project canteen oracle] 🎯
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: [ the pridictors]
 
 
 ### Team Members
-- Team Lead: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Member 1: [Chaithra P] - [scms school of engineering and technology,karukutty]
+- Member 2: [Devanjali Rageesh] - [scms school of engineering and technology,karukutty]
 
 ### Project Description
-[2-3 lines about what your project does]
+[canteen oracle is useless project but hilarious ai style website that predict what you should eat on your budget and time.it gives a dramatic,completely random food recommemdations with fake AI confidence and ridiculous reaspning.Build for fun,it turns asimple canteen decision into an unnecessarily serious"oracle consultation". ]
 
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+[we are solving the serious problem of not knowing what to eat in the cateen when you have limitted budget,limited time,and absulutely no clue what you want.]
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+[enter your budget,time,and the oracle do completely unnecessary"AI"magic boom,your food dentiny is revealed]
 
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
-
-For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
+- [HTML,CSS,java script]
+- [none]
+- [none]
+- [VS Code,Github,Github pages]
 
 ### Implementation
-For Software:
+For Software:A fun app webapp where users enter their budget and time and javascript process the input to generate a random,dramatic canteen food prediction.
 # Installation
-[commands]
+[clone the repo or download index.html,settings.json,result.html,style.css]
 
 # Run
-[commands]
+[open index.html next Right click next open with live server]
 
 ### Project Documentation
-For Software:
+For Software:canteen oracle is a fun web-based application built using HTML,CSS and javascript.users enters their budget,avilable time and the system generates a humorous food prediction using simple JavaScript logic.
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
+![alt text](image-1.png)
+*Add caption explaining what this show
+![alt text](image-2.png)
 *Add caption explaining what this shows*
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
-
-![Screenshot3](Add screenshot 3 here with proper name)
+![alt text](image-3.png)
 *Add caption explaining what this shows*
 
 # Diagrams
-![Workflow](Add your workflow/architecture diagram here)
+START
+          ↓
+   Open Canteen Oracle
+          ↓
+ Enter Budget + Time + Mood
+          ↓
+   JavaScript processes
+       the inputs
+          ↓
+   🔮 Oracle predicts
+       your food
+          ↓
+   Funny Food Result
+          ↓
+         END
 *Add caption explaining your workflow*
 
-For Hardware:
-
 # Schematic & Circuit
-![Circuit](Add your circuit diagram here)
+Not applicable – Canteen Oracle is a software-only web application and does not use electronic circuits or hardware components
 *Add caption explaining connections*
+┌──────────────┐
+│     START    │
+└──────┬───────┘
+       ↓
+┌─────────────────────┐
+│ Enter Budget, Time  │
+│      & Mood         │
+└──────────┬──────────┘
+           ↓
+┌─────────────────────┐
+│ JavaScript Processes│
+│      Inputs         │
+└──────────┬──────────┘
+           ↓
+┌─────────────────────┐
+│   🔮 Canteen Oracle │
+│     Predicts Food   │
+└──────────┬──────────┘
+           ↓
+┌─────────────────────┐
+│   Funny Food Result │
+└─────────────────────┘
 
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
-
-# Build Photos
-![Components](Add photo of your components here)
-*List out all components shown*
-
-![Build](Add photos of build process here)
-*Explain the build steps*
-
-![Final](Add photo of final product here)
-*Explain the final build*
-
-### Project Demo
-# Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
-
-# Additional Demos
-[Add any extra demo materials/links]
+### deploy link 
 
 ## Team Contributions
 - [Name 1]: [Specific contributions]
